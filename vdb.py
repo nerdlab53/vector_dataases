@@ -35,7 +35,7 @@ for sentence in sentences:
 
 # Store in VectorStore
 for sentence, vector in sentence_vectors.items():
-    vector_store.add(sentence, vector)
+    vector_store.add_vector(sentence, vector)
 
 # Similarity search
 query_sentence = "Goku has the power of a Super Saiyan God."
