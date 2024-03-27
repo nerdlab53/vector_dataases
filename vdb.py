@@ -38,7 +38,7 @@ for sentence, vector in sentence_vectors.items():
     vector_store.add_vector(sentence, vector)
 
 # Similarity search
-query_sentence = "Goku has the power of a Super Saiyan God."
+query_sentence = str(input("Enter the query sentence : "))
 query_vector = np.zeros(len(vocabulary))
 query_tokens = query_sentence.lower().split()
 for token in query_tokens:
