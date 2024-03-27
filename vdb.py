@@ -27,7 +27,7 @@ word_to_index = {word: i for i, word in enumerate(vocabulary)}
 sentence_vectors = {}  # An empty dictionary to store the senteces
 
 for sentence in sentences:
-    tokens = sentence.lower.split()
+    tokens = sentence.lower().split()
     vector = np.zeros(len(vocabulary))
     for token in tokens:
         vector[word_to_index[token]] += 1
@@ -37,3 +37,17 @@ for sentence in sentences:
 for sentence, vector in sentence_vectors.items():
     vector_store.add(sentence, vector)
 
+# Similarity search
+query_sentence = "Goku has the power of a Super Saiyan God."
+query_vector = np.zeros(len(vocabulary))
+query_tokens = query_sentence.lower().split()
+for token in query_tokens:
+    if token in word_to_index:
+        query_vector[word_to_index[token]] += 1
+
+similar_sentences = vector_store.find_similar_vectors(query_vector=query_vector, num_results=2)
+
+print(f"Query_sentence : {query_sentence}")
+print(f"Similar sentences : ")
+for sentence, similarity in similar_sentences:
+    print(f"{sentence} : Similarity : {similarity:.4f}")
